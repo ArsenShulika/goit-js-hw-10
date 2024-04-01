@@ -21,7 +21,7 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    if (userSelectedDate === 0) {
+    if (userSelectedDate === null) {
       return;
     } else {
       userSelectedDate = selectedDates[0];
@@ -32,7 +32,6 @@ const options = {
           message: 'Please choose a date in the future',
         });
         startBtn.disabled = true;
-        window.alert('Please choose a date in the future');
       } else {
         startBtn.disabled = false;
       }
@@ -45,10 +44,9 @@ flatpickr(inputText, options);
 function updateTimer() {
   const timeDiff = userSelectedDate - Date.now();
 
-  console.log(timeDiff);
-
   if (timeDiff <= 0) {
     clearInterval(timerInterval);
+    inputText.disabled = false;
     return;
   }
 
@@ -61,6 +59,7 @@ function updateTimer() {
 }
 
 startBtn.addEventListener('click', () => {
+  inputText.disabled = true;
   startBtn.disabled = true;
   timerInterval = setInterval(updateTimer, 1000);
 });
