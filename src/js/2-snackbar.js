@@ -12,8 +12,6 @@ form.addEventListener('submit', event => {
   const delay = Number(delayInput);
   const state = form.elements.state.value;
 
-  console.log(state);
-
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
       if (state === 'fulfilled') {
@@ -25,15 +23,15 @@ form.addEventListener('submit', event => {
   });
 
   promise
-    .then(resolvedDelay => {
+    .then(resolve => {
       iziToast.success({
-        message: `✅ Fulfilled promise in ${resolvedDelay}ms`,
+        message: `✅ Fulfilled promise in ${delay}ms`,
         position: 'topRight',
       });
     })
-    .catch(rejectedDelay => {
+    .catch(reject => {
       iziToast.error({
-        message: `❌ Rejected promise in ${rejectedDelay}ms`,
+        message: `❌ Rejected promise in ${delay}ms`,
         position: 'topRight',
       });
     });

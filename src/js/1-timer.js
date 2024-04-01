@@ -83,7 +83,6 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
-// Екземпляр класу Date — це об'єктб повертає в Sun Mar 31 2024 13:08:42 GMT+0200  (czas środkowoeuropejski letni)
 // const date1 = new Date();
 // console.log(date1);
 
